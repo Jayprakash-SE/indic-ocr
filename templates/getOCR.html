@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Indic-OCR</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/46/Wikisource-ico-48px.png">
+        <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='customJS.js') }}"></script>
+
+    </head>
+    <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Indic-OCR</h1>
+        </div>
+        <hr>
+
+        <form action="{{ url_for('getOCR') }}" method="get">
+            <div class="form-group">
+                <label for="imageurl">Image URL:</label>
+                <input type="text" class="form-control" id="imageurl" name="imageurl"  placeholder="https://upload.wikimedia.org/" required autocomplete="off">
+                <p style="font-size: 12px;">This must start with 'https://upload.wikimedia.org/' and be a full URL to an actual image file.</p>
+            </div>
+            <div class="form-group">
+                <label for="langcode">Language (optional):</label>
+                <select class="form-control" id="langcode" name="langcode">
+                    <option value="other">Other</option>
+                    <option value="gu">Gujrati</option>
+                    <option value="kn">Kannada</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="or">Oriya</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-md-6">
+              <img src="{{ imageUrl }}" alt="The original image" style="position: absolute; top:0; left:0; width:100%; height:100%">
+            </div>
+            <div class="col-md-6">
+                <textarea id="outputText" name="outputText" rows="20" cols="70">{{ OCRtext }}</textarea>
+                <p class="help-block">
+                        <button id="copy-button" class="btn btn-info" data-clipboard-action="copy" data-clipboard-target="#outputText">Copy to clipboard</button>
+                 </p>
+            </div>
+        </div>
+        <hr>
+        <br/>
+        <h5>Notes:-</h5>
+        <p style="font-size: 12px;">Language is optional. We uses it our convenience. It means this tool will work for all languages. which is supported by Google.</p>
+        <p style="font-size: 12px;">This tool uses google api. and store images file and OCR text for a short time. if you don't want it. then feel free to not use this tool.</p>
+        <br/>
+        <p> <small> Created by: <a href="https://meta.wikimedia.org/wiki/User:Jayprakash12345"> Jay Prakash</a> </small></p>
+        <p> For more information, see: <a href="https://meta.wikimedia.org/wiki/Indic-TechCom">Indic-TechCom</a> </p>
+    </div>
+
+    </body>
+</html>
