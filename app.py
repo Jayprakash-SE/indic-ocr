@@ -1,7 +1,7 @@
 # coding: utf8
 
 # importing modules
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
@@ -30,6 +30,9 @@ def getOCR():
         # Hey why get langcode?, It is not using anyywhere
         # Well, It will use in future. This is important variable
         langcode = request.args.get('langcode', '')
+
+        # Get api parameter value
+        isAPI = request.args.get('api', '')
 
         # Create a unique file name based on time
         currentTime = str(datetime.datetime.now())
@@ -61,7 +64,6 @@ def getOCR():
                                             media_body=media,
                                             fields='id').execute()
 
-
         # Delete Img file locally.
         os.remove("ocr/" + fileName)
 
@@ -74,9 +76,12 @@ def getOCR():
         # Read the file
         OCRtext = io.open( "ocr/" + getfileName + ".txt", mode="r", encoding="utf-8").read()
 
+        # Check if it is api request
+        if "True" in isAPI:
+            return jsonify({ "text": OCRtext })
+
         # Return the html page with OCR data
         return render_template('getOCR.html', imageUrl = imageUrl, OCRtext = OCRtext  )
-
 
 if __name__ == "__main__":
    app.run(debug=True)
