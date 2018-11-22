@@ -14,6 +14,9 @@ import os
 # initializing a variable of Flask
 app = Flask(__name__)
 
+# Disalbe
+app.config['JSON_AS_ASCII'] = False
+
 # decorating index function with the app.route with url as /home
 @app.route('/')
 def index():
