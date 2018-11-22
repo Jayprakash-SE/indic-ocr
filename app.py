@@ -10,9 +10,11 @@ import requests
 import datetime
 import io
 import os
+from flask_cors import CORS
 
 # initializing a variable of Flask
 app = Flask(__name__)
+CORS(app)
 
 # Disalbe
 app.config['JSON_AS_ASCII'] = False
