@@ -1,9 +1,11 @@
 $(document).ready( function() {
 
-    var clipboard = new ClipboardJS('#copy-button');
+    var clipboard = $('#copy-button');
 
-    clipboard.on('success', function(e) {
-        console.log('Copied');
+    clipboard.on('click', function(e) {
+        var text = $("textarea");
+        text.select();
+        navigator.clipboard.writeText(text.val());
     });
 
 } );
