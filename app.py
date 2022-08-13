@@ -89,4 +89,4 @@ def getOCR():
         return render_template('getOCR.html', imageUrl = imageUrl, OCRtext = OCRtext  )
 
 if __name__ == "__main__":
-   app.run(debug=True)
+   app.run()
