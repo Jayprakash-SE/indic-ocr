@@ -45,10 +45,9 @@ def getOCR():
         getfileName = getfileName.replace(' ', '_')
 
         # Download the Image File
-        r = requests.get(imageUrl, allow_redirects=True)
+        r = requests.get(imageUrl, allow_redirects=True, headers={'User-Agent': 'wikimedia-indic-ocr/1.0'}, timeout=10)
         fileName = getfileName + "." + r.headers.get('content-type').replace('image/', '')
         open( "ocr/" + fileName, 'wb').write(r.content)
-
 
         # Google Drive API Setup
         SCOPES = 'https://www.googleapis.com/auth/drive.file'
@@ -89,4 +88,4 @@ def getOCR():
         return render_template('getOCR.html', imageUrl = imageUrl, OCRtext = OCRtext  )
 
 if __name__ == "__main__":
-   app.run()
+   app.run(debug=True)
