@@ -28,6 +28,10 @@ def index():
 @app.route('/getOCR', methods=['GET'])
 def getOCR():
     if request.method == 'GET':
+        # Hey why get langcode?, It is not using anyywhere
+        # Well, It will use in future. This is important variable
+        langcode = request.args.get('langcode', '')
+
         imageUrl = request.args.get('imageurl', '')
         isAPI = request.args.get('api', '')
 
