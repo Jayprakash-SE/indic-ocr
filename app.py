@@ -62,7 +62,7 @@ def getOCR():
             service = build('drive', 'v3', http=creds.authorize(Http()))
 
             # Upload the file to Google Drive
-            folder_id = '1bUOQUn-ZYTpUYcMxD8myU9nKj2Vywtqo'
+            folder_id = '1-G2OEJI5RonEobDW6AfaeC0FsDfUVJPx'
             mime = 'application/vnd.google-apps.document'
             file_metadata = {'name': fileName, 'mimeType': mime, 'parents': [folder_id]}
             media = MediaFileUpload(file_path, mimetype=mime)
