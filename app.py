@@ -40,7 +40,7 @@ def getOCR():
 
         try:
             # Download the Image File
-            r = requests.get(imageUrl, allow_redirects=True)
+            r = requests.get(imageUrl, allow_redirects=True, headers={'User-Agent': 'wikimedia-indic-ocr/1.0'}, timeout=10)
             if not r.ok:
                 return jsonify({"error": f"Failed to fetch image from {imageUrl}"})
             
