@@ -84,6 +84,9 @@ def getOCR():
             with open(txt_file_path, mode="r", encoding="utf-8") as txt_file:
                 OCRtext = txt_file.read()
 
+           # Remove the character ________________ These characters are present in the output of google ocr text
+            OCRtext = OCRtext.replace('________________\n\n', '')
+
             # Check if it's an API request
             if "True" in isAPI:
                 return jsonify({"text": OCRtext})
