@@ -7,34 +7,90 @@
         <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/46/Wikisource-ico-48px.png">
         <link rel="stylesheet" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
         <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .navbar {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .form-container {
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+                margin-top: 30px;
+            }
+            .form-group label {
+                font-weight: bold;
+            }
+            .btn-info {
+                background-color: #17a2b8;
+                border-color: #17a2b8;
+                transition: background-color 0.3s ease;
+            }
+            .btn-info:hover {
+                background-color: #138496;
+                border-color: #138496;
+            }
+            footer {
+                margin-top: 50px;
+                font-size: 14px;
+                text-align: center;
+                color: #6c757d;
+            }
+            .notes p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
     </head>
     <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Indic-OCR</span>
+            <a class="navbar-brand" href="#">Indic-OCR</a>
         </div>
     </nav>
-    <div class="container">
-        <br/><br/><br/>
-       <form action="{{ url_for('getOCR') }}" method="get">
-            <div class="form-group">
+
+    <div class="container form-container">
+        <h3 class="text-center">Extract Text from Image</h3>
+        <form action="{{ url_for('getOCR') }}" method="get">
+            <div class="form-group mb-4">
                 <label for="imageurl">Image URL:</label>
-                <input type="text" class="form-control" id="imageurl" name="imageurl" placeholder="https://upload.wikimedia.org/" required autocomplete="off">
-                <p style="font-size: 12px;">This must start with 'https://upload.wikimedia.org/' and be a full URL to an actual image file.</p>
+                <input type="url" class="form-control" id="imageurl" name="imageurl" placeholder="https://upload.wikimedia.org/" required autocomplete="off">
+                <small class="text-muted">The URL must start with 'https://upload.wikimedia.org/' and link directly to an image file.</small>
             </div>
-            <button type="submit" class="btn btn-info">Submit</button>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-info">Submit</button>
+            </div>
         </form>
-        <br/>
-        <br/>
-        <hr>
-        <br/>
-        <h5>Notes:-</h5>
-        <p style="font-size: 12px;">Language is optional. We uses it our convenience. It means this tool will work for all languages. which is supported by Google.</p>
-        <p style="font-size: 12px;">This tool uses google api. and store images file and OCR text for a short time. if you don't want it. then feel free to not use this tool.</p>
-        <br/>
-        <p> <small> Created by: <a href="https://meta.wikimedia.org/wiki/User:Jayprakash12345"> Jay Prakash</a> </small></p>
-        <p> For more information, see: <a href="https://meta.wikimedia.org/wiki/Indic-TechCom">Indic-TechCom</a> </p>
-        <a href="https://github.com/Jayprakash-SE/indic-ocr"> (View source)</a>
+
+        <hr class="my-4">
+
+        <div class="notes p-4 bg-light border rounded">
+            <h5 class="mb-3">Important Notes:</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong>Language:</strong> This tool supports all languages provided by Google. Language selection is optional.
+                </li>
+                <li>
+                    <strong>Privacy:</strong> The tool uses Google API and temporarily stores image files and OCR text. If you're concerned about this, you're free to opt-out from using the tool.
+                </li>
+            </ul>
+        </div>
+
+        <footer>
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="mb-0">Created by: <a href="https://meta.wikimedia.org/wiki/User:Jayprakash12345">Jay Prakash</a></p>
+                <span class="mx-2">|</span>
+                <p class="mb-0">More info: <a href="https://meta.wikimedia.org/wiki/Indic-TechCom">Indic-TechCom</a></p>
+                <span class="mx-2">|</span>
+                <p class="mb-0"><a href="https://github.com/Jayprakash-SE/indic-ocr">View source</a></p>
+            </div>
+        </footer>
     </div>
+
+    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
     </body>
 </html>
