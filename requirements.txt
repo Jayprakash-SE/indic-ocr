@@ -3,3 +3,4 @@ httplib2
 oauth2client
 requests
 flask_cors
+google-api-python-client
